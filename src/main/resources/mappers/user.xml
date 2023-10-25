@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="users">
+
+	<!-- 유저등록 -->
+	<insert id="regUser" parameterType="com.project.domain.UserVO">
+		INSERT INTO
+		users(name, id, pw, email, age)
+		VALUES(#{name},#{id},#{pw},#{email},#{age})
+	</insert>
+	
+	<!-- 로그인 -->
+	<select id="login" resultType="com.project.domain.UserVO">
+		SELECT id, pw
+		FROM users
+		WHERE id = #{id} AND pw = #{pw}
+	</select>
+</mapper>
