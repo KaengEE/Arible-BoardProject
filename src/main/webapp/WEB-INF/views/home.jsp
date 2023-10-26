@@ -14,5 +14,8 @@
 <!-- 세션에 저장된 아이디 -->
 <a href="/users/login">로그인</a>
 <a href="/users/logout">로그아웃</a>
+
+<!-- 마이페이지 -->
+<a href="/users/setting">회원정보수정</a>
 </body>
 </html>
