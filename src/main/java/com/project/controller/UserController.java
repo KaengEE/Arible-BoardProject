@@ -50,4 +50,10 @@ public class UserController {
 		userService.regUser(vo); //회원정보 저장
 		return "redirect:/users/login"; //로그인 화면으로
 	}
+	
+	//로그아웃
+	@GetMapping("/logout")
+	public String logout() throws Exception{
+		return "home";
+	}
 }

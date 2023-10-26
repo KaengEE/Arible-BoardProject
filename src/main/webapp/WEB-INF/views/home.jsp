@@ -11,6 +11,8 @@
 	Hello world! ${userId} 
 </h1>
 
+<!-- 세션에 저장된 아이디 -->
 <a href="/users/login">로그인</a>
+<a href="/users/logout">로그아웃</a>
 </body>
 </html>
