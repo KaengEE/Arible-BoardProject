@@ -35,7 +35,7 @@ public class UserController {
 			session.setAttribute("loginUser", vo.getId()); //세션에 저장
 			return "redirect:/"; //성공시 홈화면
 		}
-		return "redirect:/users/login"; //실패시 로그인화면
+		return "users/login"; //실패시 로그인화면
 		
 	}
 	
@@ -48,12 +48,12 @@ public class UserController {
 	@PostMapping("/join")
 	public String postJoin(UserVO vo) throws Exception{
 		userService.regUser(vo); //회원정보 저장
-		return "redirect:/users/login"; //로그인 화면으로
+		return "users/login"; //로그인 화면으로
 	}
 	
 	//로그아웃
 	@GetMapping("/logout")
 	public String logout() throws Exception{
-		return "home";
+		return "users/logout";
 	}
 }
