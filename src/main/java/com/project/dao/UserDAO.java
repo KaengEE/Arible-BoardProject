@@ -1,5 +1,6 @@
 package com.project.dao;
 
+import com.project.domain.LoginUser;
 import com.project.domain.UserVO;
 
 public interface UserDAO {
@@ -8,4 +9,7 @@ public interface UserDAO {
 	
 	//로그인
 	public void login(UserVO vo) throws Exception;
+
+	//유저검사
+	public LoginUser getLoginUserInfo(LoginUser loginUser);
 }

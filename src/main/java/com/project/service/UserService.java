@@ -1,5 +1,6 @@
 package com.project.service;
 
+import com.project.domain.LoginUser;
 import com.project.domain.UserVO;
 
 public interface UserService {
@@ -8,4 +9,7 @@ public interface UserService {
 	
 	//로그인
 	public boolean login(UserVO vo) throws Exception;
+
+	//로그인검사
+	public void getLoginUserInfo(LoginUser loginUser);
 }
