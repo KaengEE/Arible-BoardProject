@@ -7,14 +7,34 @@
 	<!-- 유저등록 -->
 	<insert id="regUser" parameterType="com.project.domain.UserVO">
 		INSERT INTO
-		users(name, id, pw, email, age)
-		VALUES(#{name},#{id},#{pw},#{email},#{age})
+		users(name, id, pw, email, age, blog)
+		VALUES(#{name},#{id},#{pw},#{email},#{age},#{blog})
 	</insert>
 	
 	<!-- 로그인 -->
-	<select id="login" resultType="com.project.domain.UserVO">
-		SELECT id, pw
+	<select id="login" resultType="com.project.domain.LoginUser" parameterType="com.project.domain.LoginUser">
+		SELECT userno, name
 		FROM users
 		WHERE id = #{id} AND pw = #{pw}
 	</select>
+
+	<!-- 유저정보가져오기 -->
+	<select id="userInfo" parameterType="Integer" resultType="com.project.domain.UserVO">
+		SELECT
+		id,
+		name,
+		email,
+		blog
+		FROM users
+		WHERE userno = #{userno}
+	</select>
+	
+	<!-- 유저정보변경 -->
+	<update id="updateUser" parameterType="com.project.domain.UserVO">
+		UPDATE users
+		SET pw = #{pw}, email = #{email}, blog = #{blog}
+		WHERE userno = #{userno}
+	</update>
+	
+	
 </mapper>

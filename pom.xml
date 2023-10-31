@@ -159,7 +159,26 @@
 		    <artifactId>mysql-connector-java</artifactId>
 		    <version>8.0.19</version>
 		</dependency>     
-		   
+		   		<!-- 유효성 검사: validation-api -->
+		<dependency>
+		    <groupId>javax.validation</groupId>
+		    <artifactId>validation-api</artifactId>
+		    <version>2.0.1.Final</version>
+		</dependency>
+		
+		<!-- 유효성 검사: hibernate-validator -->
+		<dependency>
+		    <groupId>org.hibernate.validator</groupId>
+		    <artifactId>hibernate-validator</artifactId>
+		    <version>6.2.0.Final</version>
+		</dependency>
+
+		<!-- 리소스: annotation-api -->
+		<dependency>
+		    <groupId>javax.annotation</groupId>
+		    <artifactId>javax.annotation-api</artifactId>
+		    <version>1.3.2</version>
+		</dependency>
 	</dependencies>
     <build>
         <plugins>
