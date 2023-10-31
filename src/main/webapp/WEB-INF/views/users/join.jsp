@@ -32,37 +32,49 @@
                   <form:errors path="id" style="color: red"/> 
                 </div>
                 <div class="form-group col-md-6">
-                  <form:label path="pw">비밀번호</form:label>
+                  <form:label path="email">Email</form:label>
+                  <form:input path="email" class="form-control" />
+                  <form:errors path="email" style="color: red"/> 
+                </div>
+                </div>
+                <div class="form-row">
+                <div class="form-group col-md-6">
+                  <form:label path="pw" showPassword="true" >비밀번호</form:label>
                   <form:input
                     path="pw"
                     class="form-control"
                   />
                   <form:errors path="pw" style="color: red"/> 
                 </div>
-                <div class="form-group col-md-6">
-                  <form:label path="email">Email</form:label>
-                  <form:input path="email" class="form-control" />
-                  <form:errors path="email" style="color: red"/> 
+                 <div class="form-group col-md-6">
+                  <form:label path="pw2" showPassword="true" >비밀번호 확인</form:label>
+                  <form:input
+                    path="pw2"
+                    class="form-control"
+                  />
+                  <form:errors path="pw2" style="color: red"/> 
                 </div>
+
               </div>
               <div class="form-group">
                 <form:label path="blog">Blog 주소</form:label>
                 <form:input path="blog" class="form-control" />
+                <form:errors path="blog" style="color: red"/>
               </div>
               <div class="form-group">
                 <form:label path="age">나이</form:label>
                 <div class="input-group">
-                  <div class="input-group-prepend">
                     <form:input
                       path="age"
                       class="form-control"
                     />
-                  </div>
                     <form:errors path="age" style="color: red"/>
                 </div>
               </div>
-              <a class="btn btn-danger" href="/users/login">취소</a>
-              <button type="submit" class="btn btn-primary">가입</button>
+              <div class="text-center">
+	              <a class="btn btn-danger" href="/users/login">취소</a>
+	              <button type="submit" class="btn btn-primary">가입</button>
+              </div>
             </form:form>
           </div>
         </div>

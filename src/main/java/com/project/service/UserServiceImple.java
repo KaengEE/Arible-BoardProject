@@ -43,5 +43,20 @@ public class UserServiceImple implements UserService {
 		}
 		
 	}
+	@Override
+	public void getModifyUserInfo(UserVO modifyUser) {
+		//세션의 유저정보 가져오기
+		UserVO temp = dao.getModifyUserInfo(sessionUser.getUserno());
+		modifyUser.setUserno(sessionUser.getUserno());
+		modifyUser.setId(temp.getId());
+		modifyUser.setName(temp.getName());
+		modifyUser.setBlog(temp.getBlog());
+		modifyUser.setEmail(temp.getEmail());
+	}
 
+	//유저정보수정
+	@Override
+	public void modifyUserInfo(UserVO modifyUser) {
+		dao.ModifyUserInfo(modifyUser);
+	}
 }

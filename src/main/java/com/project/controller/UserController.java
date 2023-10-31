@@ -1,8 +1,6 @@
 package com.project.controller;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,11 +36,12 @@ public class UserController {
 	}
 
 	@PostMapping("/login_pro")
-	public String login_pro(@Valid @ModelAttribute("loginUser")
-							LoginUser loginUser, BindingResult result) {
+	public String login_pro(@Valid @ModelAttribute("loginUser") LoginUser loginUser,
+							BindingResult result) {
 		if(result.hasErrors()) {
 			return "users/login";
 		}
+
 		//실제 로그인 검사
 		userService.getLoginUserInfo(loginUser);
 		
@@ -56,35 +55,50 @@ public class UserController {
 	
 	@GetMapping("/not_login")
 	public String not_login() {
-		return "user/not_login";
+		return "users/not_login";
 	}
 	
 	//가입화면
 	@GetMapping("/join")
-	public String getJoin(@ModelAttribute("joinUser") UserVO vo, Model model,
-			@RequestParam(value = "fail", defaultValue = "false") boolean fail) throws Exception{
-		model.addAttribute("fail", fail);
+	public String getJoin(@ModelAttribute("joinUser") UserVO vo) throws Exception{
 		return "users/join";
 	}
 	
 	@PostMapping("/join_pro")
-	public String join_pro(@Valid @ModelAttribute("joinUser") UserVO vo, BindingResult result) throws Exception {
+	public String join_pro(@Valid @ModelAttribute("joinUser") UserVO joinUser, BindingResult result, Model model) throws Exception {
 		
 		if(result.hasErrors()) {
-			return "users/login";
+			return "users/join";
 		}
-		userService.regUser(vo); //회원정보 저장
+		if(!joinUser.getPw().equals(joinUser.getPw2())){
+			model.addAttribute("msg","비밀번호가 같지 않습니다.");
+			return "users/join";
+		}
+		userService.regUser(joinUser); //회원정보 DB저장
 		return "users/join_success";
 	}
 	
 	
 	//회원수정화면
 	@GetMapping("/setting")
-	public void setting(HttpServletRequest request, Model model) throws Exception{
-		HttpSession session = request.getSession();
-		model.addAttribute("userId",session.getAttribute("loginUser"));
+	public String setting(@ModelAttribute("modifyUser") UserVO modifyUser) throws Exception{
+		userService.getModifyUserInfo(modifyUser);
+		return "users/setting";
 	}
 	
+	//수정
+	@PostMapping("setting_pro")
+	public String modify_pro(@Valid @ModelAttribute("modifyUser") UserVO modifyUser,
+			                 BindingResult result, Model model) {
+		if(result.hasErrors()) { //에러발생시
+			return "users/setting";
+		}
+		//DB에 수정된 데이터 저장하기
+		userService.modifyUserInfo(modifyUser);
+		return "users/modify_success";
+	}
+	
+	//회원탈퇴(삭제)
 	
 	//로그아웃
 	@GetMapping("/logout")

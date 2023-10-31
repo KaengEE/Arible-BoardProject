@@ -30,4 +30,16 @@ public class UserDAOImple implements UserDAO{
 		return sqlTemplate.selectOne("users.login", loginUser);
 	}
 
+	@Override
+	public UserVO getModifyUserInfo(int userno) {
+		return sqlTemplate.selectOne("users.userInfo",userno);
+
+	}
+
+	@Override
+	public void ModifyUserInfo(UserVO modifyUser) {
+		sqlTemplate.update("users.updateUser",modifyUser);
+		
+	}
+
 }

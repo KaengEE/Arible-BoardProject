@@ -18,5 +18,23 @@
 		WHERE id = #{id} AND pw = #{pw}
 	</select>
 
+	<!-- 유저정보가져오기 -->
+	<select id="userInfo" parameterType="Integer" resultType="com.project.domain.UserVO">
+		SELECT
+		id,
+		name,
+		email,
+		blog
+		FROM users
+		WHERE userno = #{userno}
+	</select>
+	
+	<!-- 유저정보변경 -->
+	<update id="updateUser" parameterType="com.project.domain.UserVO">
+		UPDATE users
+		SET pw = #{pw}, email = #{email}, blog = #{blog}
+		WHERE userno = #{userno}
+	</update>
+	
 	
 </mapper>

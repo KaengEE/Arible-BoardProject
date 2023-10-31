@@ -12,4 +12,10 @@ public interface UserDAO {
 
 	//유저검사
 	public LoginUser getLoginUserInfo(LoginUser loginUser);
+	
+	//유저정보 가져오기
+	public UserVO getModifyUserInfo(int user_idx);
+	
+	//유저 수정
+	public void ModifyUserInfo(UserVO modifyUser);
 }

@@ -12,4 +12,8 @@ public interface UserService {
 
 	//로그인검사
 	public void getLoginUserInfo(LoginUser loginUser);
+
+	public void getModifyUserInfo(UserVO modifyUser);
+
+	public void modifyUserInfo(UserVO modifyUser);
 }
