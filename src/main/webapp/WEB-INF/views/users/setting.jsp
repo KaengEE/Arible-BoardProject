@@ -11,20 +11,6 @@
 <c:import url="/WEB-INF/views/include/cdn.jsp" />
 <title>회원수정</title>
 </head>
-<style>
-.breadcrumb-item {
-	font-weight: bold;
-}
-
-.breadcrumb-item a {
-	color: black;
-}
-
-.breadcrumb-item a:hover {
-	color: gray;
-	font-size: 1.05rem;
-}
-</style>
 <body>
 
 	<!-- nav바 -->
@@ -39,9 +25,9 @@
 	<div class="container">
 		<nav aria-label="breadcrumb" class="d-flex justify-content-center">
 			<ol class="breadcrumb bg-white">
-				<li class="breadcrumb-item"><a href="#">회원정보</a></li>
-				<li class="breadcrumb-item"><a href="#">공지사항</a></li>
-				<li class="breadcrumb-item"><a href="#">QnA</a></li>
+				<li class="breadcrumb-item"><a href="${root }/users/setting">회원정보</a></li>
+				<li class="breadcrumb-item"><a href="${root }/mypage/info">공지사항</a></li>
+				<li class="breadcrumb-item"><a href="${root }/mypage/qna">QnA</a></li>
 			</ol>
 		</nav>
 	</div>
@@ -54,7 +40,7 @@
 				<div class="card-body">
 					<form:form action="${root}/users/setting_pro"
 						modelAttribute="modifyUser">
-						<form:hidden path="userno"/>
+						<form:hidden path="userno" />
 						<div class="d-flex justify-content-start mb-2">
 							<form:label path="id">아이디</form:label>
 							<form:input path="id" readonly="readonly" />
@@ -66,7 +52,7 @@
 						<div class="d-flex justify-content-start mb-2">
 							<form:label path="pw">비밀번호</form:label>
 							<form:input path="pw" />
-							<form:errors path="pw" style="color:red"/>
+							<form:errors path="pw" style="color:red" />
 						</div>
 						<div class="d-flex justify-content-start mb-2">
 							<form:label path="email">E-mail</form:label>
@@ -78,12 +64,12 @@
 						</div>
 						<hr />
 						<div class="d-flex justify-content-center">
+							<a href="${root }/users/delete?userno=${userno}"
+								class="btn btn-danger">회원탈퇴</a>
+							<div class="mx-2"></div>
 							<form:button class="btn btn-success">회원정보변경</form:button>
 						</div>
 					</form:form>
-				</div>
-				<div class="d-flex justify-content-center mb-3">
-					<a href="#" class="btn btn-danger">회원탈퇴</a>
 				</div>
 			</div>
 		</div>

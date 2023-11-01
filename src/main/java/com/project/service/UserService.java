@@ -12,8 +12,13 @@ public interface UserService {
 
 	//로그인검사
 	public void getLoginUserInfo(LoginUser loginUser);
-
+	
+	//로그인정보
 	public void getModifyUserInfo(UserVO modifyUser);
-
+	
+	//수정
 	public void modifyUserInfo(UserVO modifyUser);
+	
+	//삭제
+	public void deleteUser(int userno);
 }

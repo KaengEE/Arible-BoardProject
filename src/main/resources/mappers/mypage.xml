@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mypage">
+
+	<!-- qna 모두 불러오기 -->
+	<select id="qna" resultType="com.project.domain.QnaVO">
+		SELECT
+		qna_idx,
+		question,
+		answer
+		FROM qna
+		ORDER BY qna_idx
+	</select>
+
+</mapper>

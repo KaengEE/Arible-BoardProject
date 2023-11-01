@@ -16,11 +16,7 @@ public class UserVO {
 	  PRIMARY KEY (`userno`));
 	 */
 	
-	@Override
-	public String toString() {
-		return "UserVO [userno=" + userno + ", name=" + name + ", id=" + id + ", pw=" + pw + ", pw2=" + pw2 + ", email="
-				+ email + ", blog=" + blog + ", age=" + age + "]";
-	}
+	
 	private int userno;
 	
 	@Size(min=2, max=4, message="이름은 2~4자로 입력해주세요")
@@ -49,6 +45,13 @@ public class UserVO {
 	@Pattern(regexp="[0-9]*", message="숫자를 입력해주세요")
 	private String age;
 	
+	
+	//투스트링
+	@Override
+	public String toString() {
+		return "UserVO [userno=" + userno + ", name=" + name + ", id=" + id + ", pw=" + pw + ", pw2=" + pw2 + ", email="
+				+ email + ", blog=" + blog + ", age=" + age + "]";
+	}
 	//게터세터
 	public String getPw2() {
 		return pw2;

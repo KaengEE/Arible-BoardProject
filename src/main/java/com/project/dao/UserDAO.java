@@ -18,4 +18,7 @@ public interface UserDAO {
 	
 	//유저 수정
 	public void ModifyUserInfo(UserVO modifyUser);
+	
+	//유저 삭제
+	public void deleteUser(int userno);
 }
