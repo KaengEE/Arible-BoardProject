@@ -37,4 +37,11 @@
 	</update>
 	
 	
+	<!-- 유저삭제 -->
+	<delete id="deleteUser" parameterType="Integer">
+		DELETE FROM users
+		WHERE userno = #{userno}
+	</delete>
+	
+	
 </mapper>

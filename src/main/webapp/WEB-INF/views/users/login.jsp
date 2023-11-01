@@ -34,13 +34,15 @@
               </div>
               <div class="form-group">
                 <form:label path="pw">비밀번호</form:label>
-                <form:input path="pw" class="form-control" showpassword="true"/>
+                <form:input path="pw" class="form-control" type="password"/>
                 <form:errors path="pw" style="color:red"/>
               </div>
               <div class="form-group form-check">
                 <p>아직 회원이 아니신가요? <a href="${root }/users/join">회원가입</a></p>
               </div>
+              <div class="d-flex justify-content-center">
               <button type="submit" class="btn btn-primary">로그인</button>
+              </div>
             </form:form>
           </div>
         </div>

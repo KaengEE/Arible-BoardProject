@@ -59,4 +59,10 @@ public class UserServiceImple implements UserService {
 	public void modifyUserInfo(UserVO modifyUser) {
 		dao.ModifyUserInfo(modifyUser);
 	}
+	
+	//유저삭제
+	@Override
+	public void deleteUser(int userno) {
+		dao.deleteUser(userno);
+	}
 }

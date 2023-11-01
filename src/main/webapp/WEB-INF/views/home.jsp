@@ -122,7 +122,7 @@
               lead-in to additional content. This content is a little bit
               longer.
             </p>
-            <a href="#" class="btn btn-primary">자세히</a>
+            <a href="#" class="btn btn-primary" style="margin-bottom:100px;">자세히</a>
           </div>
         </div>
       </div>

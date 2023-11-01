@@ -81,13 +81,14 @@ public class UserController {
 	
 	//회원수정화면
 	@GetMapping("/setting")
-	public String setting(@ModelAttribute("modifyUser") UserVO modifyUser) throws Exception{
+	public String setting(@ModelAttribute("modifyUser") UserVO modifyUser,Model model) throws Exception{
 		userService.getModifyUserInfo(modifyUser);
+		model.addAttribute("userno", modifyUser.getUserno());
 		return "users/setting";
 	}
 	
 	//수정
-	@PostMapping("setting_pro")
+	@PostMapping("/setting_pro")
 	public String modify_pro(@Valid @ModelAttribute("modifyUser") UserVO modifyUser,
 			                 BindingResult result, Model model) {
 		if(result.hasErrors()) { //에러발생시
@@ -99,6 +100,13 @@ public class UserController {
 	}
 	
 	//회원탈퇴(삭제)
+	@GetMapping("/delete")
+	public String deleteUser(int userno) {
+		userService.deleteUser(sessionUser.getUserno());
+		sessionUser.setUserLogin(false); //로그아웃
+		return "users/delete";
+	}
+	
 	
 	//로그아웃
 	@GetMapping("/logout")

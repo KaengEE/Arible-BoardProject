@@ -40,12 +40,14 @@
 			<mapping path="/"/>
 			<mapping path="/board/*"/>
 			<mapping path="/users/*"/>
+			<mapping path="/mypage/*"/>
 			<beans:ref bean="menuInterceptor"/>
 		</interceptor>
  		<interceptor>
 			<mapping path="/users/setting"/>
 			<mapping path="/users/logout"/>
 			<mapping path="/board/*"/>
+			<mapping path="/mypage/*"/>
 			<exclude-mapping path="/board/main"/>
 			<beans:ref bean="checkLoginInterceptor"/>
 		</interceptor>

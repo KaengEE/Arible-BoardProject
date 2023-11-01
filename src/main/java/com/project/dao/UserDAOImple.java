@@ -42,4 +42,10 @@ public class UserDAOImple implements UserDAO{
 		
 	}
 
+	@Override
+	public void deleteUser(int userno) {
+		sqlTemplate.delete("users.deleteUser",userno);
+		
+	}
+
 }
