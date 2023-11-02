@@ -1,21 +1,16 @@
 package com.project.dao;
 
-import java.util.List;
-
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.project.domain.MenuVO;
-
 @Repository
-public class MenuDAO {
+public class BoardDAO {
 
 	@Autowired
 	private SqlSessionTemplate sqlTemplate;
 	
-	public List<MenuVO> getMenuList(){
-		return sqlTemplate.selectList("menu.menuList");
+	public String getBoardName(int board_idx) {
+		return sqlTemplate.selectOne("board.getBoardName",board_idx);
 	}
-	
 }

@@ -24,9 +24,9 @@
     <div class="d-flex justify-content-center">
       <div class="card" style="width: 50rem">
         <div class="card-body">
-          <h5 class="card-title">인기글</h5>
+          <h5 class="card-title">${board_Name }</h5>
           <h6 class="card-subtitle mb-2 text-muted">
-            지금 <span style="color: red">Hot</span>한 주제
+            ${board_title }
           </h6>
           <!-- 게시글 table (인기순) -->
           <table class="table table-striped">
