@@ -88,7 +88,7 @@
       <div class="row d-flex justify-content-center mt-3">
         <!-- 카드1 -->
         <div class="card mb-3 col-3">
-          <img src="images/sample1.jpg" class="card-img-top pt-3" alt="..." />
+          <img src="../resouces/images/sample1.jpg" class="card-img-top pt-3" alt="..." />
           <div class="card-body">
             <h5 class="card-title">Card title</h5>
             <p class="card-text">

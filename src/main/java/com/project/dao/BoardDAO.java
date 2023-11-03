@@ -18,23 +18,35 @@ public class BoardDAO {
 		return sqlTemplate.selectOne("board.getBoardName",board_idx);
 	}
 	
-	//게시글추가
+	//寃뚯떆湲�異붽�
 	public void addBoardContent(BoardVO writeContent) {
 		sqlTemplate.insert("board.writeContent",writeContent);
 	}
 	
-	//게시글 목록
+	//寃뚯떆湲� 紐⑸줉
 	public List<BoardVO> getContentList(int board_idx) {
 		return sqlTemplate.selectList("board.contentList",board_idx);
 	}
 	
-	//게시글 view
+	//寃뚯떆湲� view
 	public BoardVO viewCotent(int content_idx) {
 		return sqlTemplate.selectOne("board.viewContent", content_idx);
 	}
 	
-	//조회수증가
+	//議고쉶�닔利앷�
 	public void viewCnt(int content_idx) {
 		 sqlTemplate.update("board.viewCnt",content_idx);
 	}
+	
+	//게시글수정
+	public void modifyContent(BoardVO modifyContent) {
+		sqlTemplate.update("board.modifyContent",modifyContent);
+	}
+	
+	//게시글삭제
+	public void deleteContent(int content_idx) {
+		sqlTemplate.delete("board.deleteContent",content_idx);
+	}
+	
+	
 }

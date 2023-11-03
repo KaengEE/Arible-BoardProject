@@ -56,5 +56,19 @@
 		WHERE content_idx = #{content_idx}
 	</update>
 	
+	<!-- 게시글 수정 -->
+	<update id="modifyContent" parameterType="com.project.domain.BoardVO">
+		UPDATE board
+		SET title = #{title},
+		content = #{content}
+		WHERE content_idx = #{content_idx}
+	</update>
+	
+	
+	<!-- 게시글 삭제 -->
+	<delete id="deleteContent" parameterType="Integer">
+		DELETE FROM board
+		WHERE content_idx = #{content_idx}
+	</delete>
 	
 </mapper>
