@@ -17,4 +17,9 @@ public class MenuDAO {
 	public List<MenuVO> getMenuList(){
 		return sqlTemplate.selectList("menu.menuList");
 	}
+	
+	public MenuVO getMenu(int board_idx) {
+		return sqlTemplate.selectOne("menu.getMenu", board_idx);
+	}
+	
 }

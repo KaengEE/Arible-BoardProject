@@ -18,4 +18,7 @@ public class MenuService {
 		return menuDAO.getMenuList();
 	}
 
+	public MenuVO getMenu(int board_idx) {
+		return menuDAO.getMenu(board_idx);
+	}
 }

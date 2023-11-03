@@ -1,13 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<c:set var="root" value="${pageContext.request.contextPath }"/>
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <!-- cdn -->
 <c:import url="/WEB-INF/views/include/cdn.jsp" />
-<title>Insert title here</title>
+<title>메인페이지</title>
 </head>
 <body>
 <!-- nav바 -->
@@ -15,8 +17,8 @@
     <!-- 점보트론 -->
     <div class="jumbotron jumbotron-fluid">
       <div class="container">
-        <h4 class="display-4">인기글</h4>
-        <p class="lead">블라블라 커뮤니티의 인기글을 한눈에!</p>
+        <h4 class="display-4">${boardMenu.board_name }</h4>
+        <p class="lead">${boardMenu.board_title }</p>
       </div>
     </div>
 
@@ -24,10 +26,8 @@
     <div class="d-flex justify-content-center">
       <div class="card" style="width: 50rem">
         <div class="card-body">
-          <h5 class="card-title">인기글</h5>
-          <h6 class="card-subtitle mb-2 text-muted">
-            지금 <span style="color: red">Hot</span>한 주제
-          </h6>
+          <h5 class="card-title">${boardMenu.board_name }</h5>
+
           <!-- 게시글 table (인기순) -->
           <table class="table table-striped">
             <thead>
@@ -36,45 +36,19 @@
                 <th scope="col">제목</th>
                 <th scope="col">작성자</th>
                 <th scope="col">조회수</th>
+                <th scope="col">작성일</th>
               </tr>
             </thead>
             <tbody>
+            <c:forEach var="obj" items="${list }">
               <tr>
-                <th scope="row">1</th>
-                <td><a href="view.html" style="color: black">제목1</a></td>
-                <td>작성자1</td>
-                <td>10</td>
+                <th scope="row">${obj.content_idx }</th>
+                <td><a href="${root }/board/view?board_idx=${board_idx }&content_idx=${obj.content_idx}" style="color: black">${obj.title }</a></td>
+                <td>${obj.name }</td>
+                <td>${obj.count}</td>
+                <td>${obj.regDate}</td>
               </tr>
-              <tr>
-                <th scope="row">2</th>
-                <td>제목1</td>
-                <td>작성자1</td>
-                <td>10</td>
-              </tr>
-              <tr>
-                <th scope="row">3</th>
-                <td>제목1</td>
-                <td>작성자1</td>
-                <td>10</td>
-              </tr>
-              <tr>
-                <th scope="row">4</th>
-                <td>제목1</td>
-                <td>작성자1</td>
-                <td>10</td>
-              </tr>
-              <tr>
-                <th scope="row">5</th>
-                <td>제목1</td>
-                <td>작성자1</td>
-                <td>10</td>
-              </tr>
-              <tr>
-                <th scope="row">6</th>
-                <td>제목1</td>
-                <td>작성자1</td>
-                <td>10</td>
-              </tr>
+            </c:forEach>
             </tbody>
           </table>
         </div>
@@ -92,7 +66,7 @@
           </ul>
         </nav>
         <div class="d-flex justify-content-end my-3 mr-5">
-          <a class="btn btn-info" href="/board/write">글쓰기</a>
+          <a class="btn btn-info" href="${root }/board/write?board_idx=${board_idx}">글쓰기</a>
         </div>
       </div>
     </div>

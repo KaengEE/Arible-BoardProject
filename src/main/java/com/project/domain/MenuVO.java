@@ -4,7 +4,14 @@ public class MenuVO {
 
 	private int board_idx;
 	private String board_name;
+	private String board_title;
 	
+	public String getBoard_title() {
+		return board_title;
+	}
+	public void setBoard_title(String board_title) {
+		this.board_title = board_title;
+	}
 	public int getBoard_idx() {
 		return board_idx;
 	}
