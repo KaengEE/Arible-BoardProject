@@ -11,4 +11,50 @@
 		WHERE board_idx = #{board_idx}
 	</select>
 
+
+	<!-- 게시판 작성 -->
+	<insert id="writeContent" parameterType="com.project.domain.BoardVO">
+		INSERT INTO
+		board(content_idx, title, writer_idx, count, board_idx, content)
+		VALUES(#{content_idx},#{title},#{writer_idx},#{count},#{board_idx},#{content})
+	</insert>
+	
+	<!-- 글목록 -->
+	<select id="contentList" parameterType="Integer" resultType="com.project.domain.BoardVO">
+		SELECT
+		content_idx,
+		title,
+		name,
+		DATE_FORMAT(regDate,'%y-%m-%d') AS regDate,
+		count
+		FROM board b
+		JOIN users u ON b.writer_idx = u.userno
+		WHERE board_idx = #{board_idx}
+	</select>
+	
+	
+	<!-- 뷰페이지 -->
+	<select id="viewContent" parameterType="Integer" resultType="com.project.domain.BoardVO">
+		SELECT
+		content_idx,
+		title,
+		name,
+		DATE_FORMAT(regDate,'%y-%m-%d') AS regDate,
+		count,
+		content,
+		writer_idx
+		FROM board b
+		JOIN users u ON b.writer_idx = u.userno
+		WHERE content_idx = #{content_idx}
+	</select>
+	
+	
+	<!-- 조회수 증가 -->
+	<update id="viewCnt" parameterType="Integer">
+		UPDATE board
+		SET count = count + 1
+		WHERE content_idx = #{content_idx}
+	</update>
+	
+	
 </mapper>

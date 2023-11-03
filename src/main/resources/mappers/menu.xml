@@ -7,9 +7,18 @@
 	<select id="menuList" resultType="com.project.domain.MenuVO">
 		SELECT
 		board_idx,
-		board_name
+		board_name,
+		board_title
 		FROM menu
 		ORDER BY board_idx
+	</select>
+	
+	<select id="getMenu" resultType="com.project.domain.MenuVO" parameterType="Integer">
+		SELECT
+		board_name,
+		board_title
+		FROM menu
+		WHERE board_idx = #{board_idx}
 	</select>
 	
 </mapper>
