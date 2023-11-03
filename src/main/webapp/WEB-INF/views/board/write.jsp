@@ -8,10 +8,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
+
 <!-- cdn -->
 <c:import url="/WEB-INF/views/include/cdn.jsp" />
+
 <!-- 썸머노트 -->
-<!-- include libraries(jQuery, bootstrap) -->
+<!-- include libraries(jQuery, bootstrap 3.4.1 버전) -->
 <link
 	href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
 	rel="stylesheet" />
@@ -58,7 +60,7 @@
 					<div>
 					<a class="btn btn-danger"
 						href="${root }/board/main?board_idx=${board_idx}">취소</a>
-					<form:button class="btn btn-info" value="작성완료" />
+					<form:button class="btn btn-info">작성완료</form:button>
 					</div>
 				</form:form>
 				</div>
