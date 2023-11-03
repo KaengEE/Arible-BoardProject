@@ -25,7 +25,7 @@
 	rel="stylesheet" />
 <script
 	src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
-<title>작성하기</title>
+<title>수정하기</title>
 </head>
 <body>
 	<!-- nav바 -->
@@ -34,7 +34,7 @@
 		<div class="d-flex justify-content-center">
 			<div class="card" style="width: 800px">
 				<div class="card-body">
-					<h3 class="card-title">글 작성</h3>
+					<h3 class="card-title">글 수정</h3>
 					<!-- 카테고리 -->
 					<div class="input-group">
 						<div class="input-group-prepend">
@@ -43,15 +43,15 @@
 								type="text" value="${boardMenu.board_name }" readonly="readonly" />
 						</div>
 					</div>
-				<form:form action="${root }/board/write_pro" method="post"
-					modelAttribute="writeContent">
+				<form:form action="${root }/board/modify_pro" method="post"
+					modelAttribute="modifyContent">
 					<form:hidden path="board_idx" />
+					<form:hidden path="content_idx" />
 					<!-- 제목 -->
 					<form:label path="title" class="my-3">제목</form:label>
-					<form:input path="title" placeholder="제목을 입력하세요." />
+					<form:input path="title" />
 					<!-- 작성자 넘기기 (세션값) -->
 					<form:input type="hidden" path="writer_idx" />
-					<form:errors path='title' style='color:red' />
 					<!-- 썸머노트 -->
 					<form:textarea path="content"></form:textarea>
 					<form:errors path='content' style='color:red' />

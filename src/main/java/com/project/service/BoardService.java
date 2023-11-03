@@ -20,33 +20,44 @@ public class BoardService {
 	@Resource(name="sessionUser")
 	private LoginUser sessionUser;
 	
-	//게시판이름
+	//寃뚯떆�뙋�씠由�
 	public String getBoardName(int board_idx) {
 		return dao.getBoardName(board_idx);
 	}
 	
-	//게시글작성
+	//寃뚯떆湲��옉�꽦
 	public void addBoardContent(BoardVO writeContent) {
 		
-		//글쓴이를 세션로그인에서 가져와서 추가
+		//湲��벖�씠瑜� �꽭�뀡濡쒓렇�씤�뿉�꽌 媛��졇���꽌 異붽�
 		writeContent.setWriter_idx(sessionUser.getUserno());
 		
 		dao.addBoardContent(writeContent);
 	}
 	
-	//게시글 목록
+	//寃뚯떆湲� 紐⑸줉
 	public List<BoardVO> getContentList(int board_idx){
 		return dao.getContentList(board_idx);
 	}
 	
-	//뷰페이지
+	//酉고럹�씠吏�
 	public BoardVO viewCotent(int content_idx) {
 		return dao.viewCotent(content_idx);
 	}
 	
-	//게시글 조회시 조회수 1증가
+	//寃뚯떆湲� 議고쉶�떆 議고쉶�닔 1利앷�
 	public BoardVO view(int content_idx) {
 		dao.viewCnt(content_idx);
 		return dao.viewCotent(content_idx);
 	}
+	
+	//게시글 수정
+	public void modifyContent(BoardVO modifyContent) {
+		dao.modifyContent(modifyContent);
+	}
+	
+	//게시글 삭제
+	public void deleteContent(int content_idx) {
+		dao.deleteContent(content_idx);
+	}
+	
 }

@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.project.domain.LoginUser;
 import com.project.domain.BoardVO;
+import com.project.domain.LoginUser;
 import com.project.service.BoardService;
 import com.project.service.MenuService;
 
@@ -65,6 +65,7 @@ public class BoardController {
 	public String view(@RequestParam("board_idx") int board_idx,
 					   @RequestParam("content_idx") int content_idx, Model model) {
 		model.addAttribute("board_idx",board_idx); //카테고리 번호
+		model.addAttribute("content_idx",content_idx);
 		model.addAttribute("sessionUser", sessionUser);
 		model.addAttribute("boardMenu", mService.getMenu(board_idx)); //카테고리이름
 
@@ -75,4 +76,47 @@ public class BoardController {
 		return "board/view";
 	}
 	
+	//게시글수정화면
+	@GetMapping("/modify")
+	public String modify(@RequestParam("board_idx") int board_idx,
+			@RequestParam("content_idx") int content_idx,
+			@ModelAttribute("modifyContent") BoardVO modifyContent, Model model) {
+		model.addAttribute("board_idx",board_idx); //카테고리 번호
+		model.addAttribute("content_idx",content_idx); //게시글 번호
+		model.addAttribute("sessionUser", sessionUser); //사용자세션정보
+		model.addAttribute("boardMenu", mService.getMenu(board_idx)); //카테고리이름
+		//DB데이터가져오기
+		model.addAttribute("modifyContent",bService.viewCotent(content_idx));
+		return "board/modify";
+	}
+	
+	
+	//success에 board_idx가 안넘어감
+	//수정	
+	@PostMapping("/modify_pro")
+	public String modify_pro(@Valid @RequestParam("board_idx") int board_idx,
+			@RequestParam("content_idx") int content_idx,
+			@ModelAttribute("modifyContent") BoardVO modifyContent,
+            BindingResult result, Model model) {
+		if(result.hasErrors()) {
+			return "board/modify";
+		}
+		model.addAttribute("board_idx",board_idx); //카테고리 번호
+		model.addAttribute("boardMenu", mService.getMenu(board_idx)); //카테고리이름
+		model.addAttribute("content_idx",content_idx); //게시글 번호
+		
+		//DB에 수정된 데이터 저장하기
+		bService.modifyContent(modifyContent);
+		return "board/modify_success";
+	}
+	
+	
+	//게시글 삭제
+	@GetMapping("/delete")
+	public String deleteContent(@RequestParam("board_idx") int board_idx,
+			@RequestParam("content_idx") int content_idx, Model model) {
+		model.addAttribute("board_idx", board_idx);
+		bService.deleteContent(content_idx);
+		return "board/delete_success";
+	}
 }

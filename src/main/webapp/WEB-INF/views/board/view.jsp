@@ -33,9 +33,9 @@
             <hr />
             <!-- 로그인아이디와 작성아이디가 동일해야 보임 -->
             <div class="d-flex justify-content-end">
-               <c:if test="${content.writer_idx == sessionUser.userno }">
-              <a class="btn btn-success mr-1 btn-m" href="modify.html">수정</a>
-              <a class="btn btn-danger" href="delete.html">삭제</a>
+              <c:if test="${content.writer_idx == sessionUser.userno }">
+	              <a class="btn btn-success mr-1 btn-m" href="${root }/board/modify?board_idx=${board_idx}&content_idx=${content_idx}">수정</a>
+	              <a class="btn btn-danger" href="${root }/board/delete?board_idx=${board_idx}&content_idx=${content_idx}">삭제</a>
               </c:if>
             </div>
             
