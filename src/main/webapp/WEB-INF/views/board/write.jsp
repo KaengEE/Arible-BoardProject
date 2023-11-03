@@ -8,10 +8,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
+
 <!-- cdn -->
 <c:import url="/WEB-INF/views/include/cdn.jsp" />
+
 <!-- 썸머노트 -->
-<!-- include libraries(jQuery, bootstrap) -->
+<!-- include libraries(jQuery, bootstrap 3.4.1 버전) -->
 <link
 	href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
 	rel="stylesheet" />
