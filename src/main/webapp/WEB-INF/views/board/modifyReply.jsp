@@ -21,19 +21,19 @@
 			<div class="card" style="width: 800px">
 				<div class="card-body">
 					<h3 class="card-title">댓글 수정</h3>
-				<form action="${root }/board/modifyReply" method="post"
+				<form:form action="${root }/board/modifyReply" method="post" modelAttribute="modifyReply"
 					>
-					<input type="hidden" name="reply_idx" value="${reply_idx}" />
-					<input type="hidden" name="board_idx" value="${board_idx}" />
-					<input type="hidden" name="content_idx" value="${content_idx}" />
-					<label for="reply">댓글</label>
-					<input type="text" name="reply" value="${modifyReply.reply}" class="col-5" />
+					<form:hidden path="reply_idx" value="${reply_idx}" />
+					<form:hidden path="board_idx"  value="${board_idx}" />
+					<form:hidden path="content_idx"  value="${content_idx}" />
+					<form:label path="reply">댓글</form:label>
+					<form:input path="reply" value="${modifyReply.reply}" class="col-5" />
 					<div>
 					<a class="btn btn-danger"
 						href="${root }/board/view?board_idx=${board_idx}&content_idx=${content_idx}">취소</a>
-					<button class="btn btn-info">작성완료</button>
+					<form:button class="btn btn-info">작성완료</form:button>
 					</div>
-				</form>
+				</form:form>
 				</div>
 			</div>
 		</div>

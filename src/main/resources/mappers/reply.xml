@@ -33,11 +33,27 @@
 	</delete>
 	
 	<!-- 댓글수정 -->
-	<update id="updateReply" parameterType="Integer">
+	<update id="updateReply" parameterType="com.project.domain.ReplyVO">
 		UPDATE reply
 		SET reply = #{reply}
 		WHERE reply_idx = #{reply_idx}
 	</update>
+	
+	<!-- 댓글뷰 -->
+	<select id="oneReply" parameterType="Integer" resultType="com.project.domain.ReplyVO">
+		SELECT
+		reply_idx,
+		reply,
+		name,
+		DATE_FORMAT(reply_regDate,'%y-%m-%d') AS reply_regDate,
+		reply_writer_idx,
+		r.content_idx,
+		board_idx
+		FROM reply r
+		JOIN users u ON r.reply_writer_idx = u.userno
+		JOIN board b ON r.content_idx = b.content_idx
+		WHERE reply_idx = #{reply_idx}
+	</select>
 	
 	
 </mapper>

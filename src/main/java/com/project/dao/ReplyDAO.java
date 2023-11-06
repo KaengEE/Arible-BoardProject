@@ -29,7 +29,12 @@ public class ReplyDAO {
 	}
 	
 	//댓글수정
-	public void modifyReply(int reply_idx) {
-		sqlTemplate.update("reply.updateReply", reply_idx);
+	public void modifyReply(ReplyVO modifyReply) {
+	    sqlTemplate.update("reply.updateReply", modifyReply);
+	}
+	
+	//댓글한개
+	public ReplyVO oneReply(int reply_idx) {
+		return sqlTemplate.selectOne("reply.oneReply", reply_idx);
 	}
 }

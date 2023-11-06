@@ -38,8 +38,12 @@ public class ReplyService {
 	}
 	
 	//댓글수정
-	public void modifyReply(int reply_idx) {
-
-		dao.modifyReply(reply_idx);
+	public void modifyReply(ReplyVO modifyReply) {
+	    dao.modifyReply(modifyReply);
+	}
+	
+	//댓글한개
+	public ReplyVO oneReply(int reply_idx) {
+		return dao.oneReply(reply_idx);
 	}
 }

@@ -181,7 +181,7 @@ public class BoardController {
 	//댓글수정화면
 	//reply_idx를 못받음
 	@GetMapping("/modifyReply")
-	public String modifyReply(int reply_idx,
+	public String modifyReplyView(int reply_idx,
 			@RequestParam("board_idx") int board_idx,
 	        @RequestParam("content_idx") int content_idx,
 	        Model model) {
@@ -189,8 +189,8 @@ public class BoardController {
 	    model.addAttribute("content_idx", content_idx); // 게시글 번호
 	    model.addAttribute("reply_idx", reply_idx); //댓글번호
 
-	    // DB 데이터 가져오기
-	    model.addAttribute("modifyReply", rService.getReplyList(reply_idx));
+		//DB데이터가져오기
+		model.addAttribute("modifyReply",rService.oneReply(reply_idx));
 	    return "board/modifyReply";
 	}
 	
@@ -199,12 +199,12 @@ public class BoardController {
 	public String modifyReply(@RequestParam("board_idx") int board_idx,
 			@RequestParam("content_idx") int content_idx,
 			@RequestParam("reply_idx") int reply_idx,
-			@ModelAttribute("modifyReply") ReplyVO modifyReply,Model model) {
+			@ModelAttribute("modifyReply") ReplyVO Reply,Model model) {
 		model.addAttribute("board_idx",board_idx); //카테고리 번호
 		model.addAttribute("content_idx",content_idx); //게시글 번호
 		model.addAttribute("reply_idx",reply_idx); //댓글 번호
-		//DB에서 가져오기
-		rService.modifyReply(reply_idx);
+		//DB에 저장
+		rService.modifyReply(Reply);
 		return "board/modifyReply_success";
 	}
 	
