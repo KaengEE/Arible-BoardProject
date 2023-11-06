@@ -33,7 +33,17 @@ public class ReplyService {
 	}
 	
 	//댓글 삭제
-	public void deleteReply(ReplyVO reply_idx) {
+	public void deleteReply(int reply_idx) {
 		dao.deleteReply(reply_idx);
+	}
+	
+	//댓글수정
+	public void modifyReply(ReplyVO modifyReply) {
+	    dao.modifyReply(modifyReply);
+	}
+	
+	//댓글한개
+	public ReplyVO oneReply(int reply_idx) {
+		return dao.oneReply(reply_idx);
 	}
 }

@@ -24,7 +24,17 @@ public class ReplyDAO {
 	}
 	
 	//댓글삭제
-	public void deleteReply(ReplyVO reply_idx) {
+	public void deleteReply(int reply_idx) {
 		sqlTemplate.delete("reply.removeReply",reply_idx);
+	}
+	
+	//댓글수정
+	public void modifyReply(ReplyVO modifyReply) {
+	    sqlTemplate.update("reply.updateReply", modifyReply);
+	}
+	
+	//댓글한개
+	public ReplyVO oneReply(int reply_idx) {
+		return sqlTemplate.selectOne("reply.oneReply", reply_idx);
 	}
 }

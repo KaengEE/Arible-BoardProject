@@ -101,12 +101,13 @@ public class BoardController {
 		model.addAttribute("sessionUser", sessionUser);
 		model.addAttribute("boardMenu", mService.getMenu(board_idx)); //카테고리이름
 		model.addAttribute("page", page); //페이지값 넘겨주기
-
 		//DB데이터가져오기
 		model.addAttribute("content",bService.viewCotent(content_idx));
 		
 		//댓글보여주기
 		model.addAttribute("replyList", rService.getReplyList(content_idx));
+		//reply_idx 보내기
+		model.addAttribute("reply_idx", replyList.getReply_idx()); 
 		//조회수카운트
 		bService.view(content_idx);
 		return "board/view";
@@ -127,7 +128,7 @@ public class BoardController {
 	
 	//댓글 삭제
 	@GetMapping("/delReply")
-	public String deleteReply(ReplyVO reply_idx,
+	public String deleteReply(int reply_idx,
 			@RequestParam("board_idx") int board_idx,
 			@RequestParam("content_idx") int content_idx, Model model) {
 		rService.deleteReply(reply_idx);
@@ -168,8 +169,6 @@ public class BoardController {
 		model.addAttribute("board_idx",board_idx); //카테고리 번호
 		model.addAttribute("boardMenu", mService.getMenu(modifyContent.getBoard_idx())); //카테고리이름
 		model.addAttribute("content_idx",content_idx); //게시글 번호
-		System.out.println(board_idx);
-		System.out.println(modifyContent.getBoard_idx());
 		model.addAttribute("page", page); //페이지값 넘겨주기
 
 		//DB에 수정된 데이터 저장하기
@@ -177,6 +176,37 @@ public class BoardController {
 		return "board/modify_success";
 	}
 	
+
+	
+	//댓글수정화면
+	//reply_idx를 못받음
+	@GetMapping("/modifyReply")
+	public String modifyReplyView(int reply_idx,
+			@RequestParam("board_idx") int board_idx,
+	        @RequestParam("content_idx") int content_idx,
+	        Model model) {
+	    model.addAttribute("board_idx", board_idx); // 카테고리 번호
+	    model.addAttribute("content_idx", content_idx); // 게시글 번호
+	    model.addAttribute("reply_idx", reply_idx); //댓글번호
+
+		//DB데이터가져오기
+		model.addAttribute("modifyReply",rService.oneReply(reply_idx));
+	    return "board/modifyReply";
+	}
+	
+	//댓글 수정
+	@PostMapping("/modifyReply")
+	public String modifyReply(@RequestParam("board_idx") int board_idx,
+			@RequestParam("content_idx") int content_idx,
+			@RequestParam("reply_idx") int reply_idx,
+			@ModelAttribute("modifyReply") ReplyVO Reply,Model model) {
+		model.addAttribute("board_idx",board_idx); //카테고리 번호
+		model.addAttribute("content_idx",content_idx); //게시글 번호
+		model.addAttribute("reply_idx",reply_idx); //댓글 번호
+		//DB에 저장
+		rService.modifyReply(Reply);
+		return "board/modifyReply_success";
+	}
 	
 	//게시글 삭제
 	@GetMapping("/delete")
