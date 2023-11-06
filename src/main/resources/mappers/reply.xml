@@ -22,7 +22,7 @@
 		FROM reply r
 		JOIN users u ON r.reply_writer_idx = u.userno
 		JOIN board b ON r.content_idx = b.content_idx
-		WHERE r.content_idx = ${content_idx}
+		WHERE r.content_idx = #{content_idx}
 	</select>
 
 
@@ -32,6 +32,12 @@
 		WHERE reply_idx = #{reply_idx}
 	</delete>
 	
+	<!-- 댓글수정 -->
+	<update id="updateReply" parameterType="Integer">
+		UPDATE reply
+		SET reply = #{reply}
+		WHERE reply_idx = #{reply_idx}
+	</update>
 	
 	
 </mapper>

@@ -52,7 +52,7 @@
                   <div class="ml-3">
                   <!-- 댓글도 댓글쓴사람과 세션아이디 일치하는지에 따라 노출 -->
                   <c:if test="${obj.reply_writer_idx == sessionUser.userno }">
-                    <a class="btn btn-info btn-sm" href="#">수정</a>
+                    <a class="btn btn-info btn-sm" href="${root }/board/modifyReply?board_idx=${board_idx }&content_idx=${content_idx }&reply_idx=${obj.reply_idx}">수정</a>
                     <a class="btn btn-danger btn-sm" href="${root }/board/delReply?board_idx=${board_idx }&content_idx=${content_idx }&reply_idx=${obj.reply_idx}">삭제</a>
                   </c:if>
                   </div>
