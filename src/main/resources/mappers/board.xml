@@ -33,6 +33,35 @@
 	</select>
 	
 	
+	<!-- 전체글목록(인기순) -->
+	<select id="contentListPopular" parameterType="Integer" resultType="com.project.domain.BoardVO">
+		SELECT
+		board_idx,
+		content_idx,
+		title,
+		name,
+		DATE_FORMAT(regDate,'%y-%m-%d') AS regDate,
+		count
+		FROM board b
+		JOIN users u ON b.writer_idx = u.userno
+		ORDER BY count DESC limit 5
+	</select>
+	
+	<!-- 인기글 -->
+		<select id="contentPopular" parameterType="Integer" resultType="com.project.domain.BoardVO">
+		SELECT
+		board_idx,
+		content_idx,
+		title,
+		name,
+		DATE_FORMAT(regDate,'%y-%m-%d') AS regDate,
+		count
+		FROM board b
+		JOIN users u ON b.writer_idx = u.userno
+		ORDER BY count DESC
+	</select>
+	
+	
 	<!-- 뷰페이지 -->
 	<select id="viewContent" parameterType="Integer" resultType="com.project.domain.BoardVO">
 		SELECT
@@ -47,8 +76,7 @@
 		JOIN users u ON b.writer_idx = u.userno
 		WHERE content_idx = #{content_idx}
 	</select>
-	
-	
+
 	<!-- 조회수 증가 -->
 	<update id="viewCnt" parameterType="Integer">
 		UPDATE board
@@ -70,5 +98,34 @@
 		DELETE FROM board
 		WHERE content_idx = #{content_idx}
 	</delete>
+	
+	<!-- 게시글 개수  -->
+	<select id="contentCnt" parameterType="Integer" resultType="Integer">
+		SELECT COUNT(*)
+		FROM board
+		WHERE board_idx = #{board_idx}
+	</select>
+	
+	<!-- 전체 게시글 수 -->
+	<select id="allContentCnt" parameterType="Integer" resultType="Integer">
+		SELECT COUNT(*)
+		FROM board
+	</select>
+	
+	<!-- 검색 -->
+	<select id="searchContent" resultType="com.project.domain.BoardVO">
+	    SELECT
+	    board_idx,
+	    content_idx,
+	    title,
+	    name,
+	    DATE_FORMAT(regDate,'%y-%m-%d') AS regDate,
+	    count
+	    FROM board b
+	    JOIN users u ON b.writer_idx = u.userno
+	    WHERE title LIKE concat('%', #{keyword}, '%')
+	    AND board_idx = #{board_idx}
+	    ORDER BY regDate DESC
+	</select>
 	
 </mapper>

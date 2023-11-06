@@ -2,6 +2,8 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page session="false" %>
+<c:set var="root" value="${pageContext.request.contextPath }" />
+
 <html>
 <head>
 	<title>Home</title>
@@ -22,19 +24,7 @@
       </div>
     </div>
 
-    <div class="d-flex justify-content-center my-5">
-      <form class="form-inline my-2 my-lg-0">
-        <input
-          class="form-control mr-sm-2"
-          type="search"
-          placeholder="Search"
-          aria-label="Search"
-        />
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
-          Search
-        </button>
-      </form>
-    </div>
+
 
     <!-- 게시글 카드 -->
     <div class="d-flex justify-content-center">
@@ -55,24 +45,14 @@
               </tr>
             </thead>
             <tbody>
+            <c:forEach var="obj" items="${pList }">
               <tr>
-                <th scope="row">1</th>
-                <td><a href="view.html" style="color: black">제목1</a></td>
-                <td>작성자1</td>
-                <td>10</td>
+                <th scope="row">${obj.content_idx }</th>
+                <td><a href="${root }/board/main?board_idx=${obj.board_idx}&content_idx=${obj.content_idx}" style="color: black">${obj.title }</a></td>
+                <td>${obj.name }</td>
+                <td>${obj.count }</td>
               </tr>
-              <tr>
-                <th scope="row">2</th>
-                <td>제목1</td>
-                <td>작성자1</td>
-                <td>10</td>
-              </tr>
-              <tr>
-                <th scope="row">3</th>
-                <td>제목1</td>
-                <td>작성자1</td>
-                <td>10</td>
-              </tr>
+             </c:forEach>
             </tbody>
           </table>
           <a href="/board/main" class="card-link d-flex flex-row-reverse"
@@ -84,7 +64,7 @@
 
     <!-- 게시글 + 이미지 -->
     <div class="mt-5">
-      <h4 class="d-flex justify-content-center">추천 게시글</h4>
+      <h4 class="d-flex justify-content-center">이달의 추천</h4>
       <div class="row d-flex justify-content-center mt-3">
         <!-- 카드1 -->
         <div class="card mb-3 col-3">

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<c:set var="root" value="${pageContext.request.contextPath }"/>
 <!DOCTYPE html>
 <html>
 <head>
@@ -46,18 +47,14 @@
               </tr>
             </thead>
             <tbody>
+            <c:forEach var="obj" items="${list }">
               <tr>
-                <th scope="row">1</th>
-                <td><a href="view.html" style="color: black">제목1</a></td>
-                <td>작성자1</td>
-                <td>23-10-15</td>
+                <th scope="row">${obj.info_idx }</th>
+                <td><a href="/mypage/view?info_idx=${obj.info_idx }" style="color: black">${obj.info_title }</a></td>
+                <td>${obj.name }</td>
+                <td>${obj.regDate }</td>
               </tr>
-              <tr>
-                <th scope="row">2</th>
-                <td>제목1</td>
-                <td>작성자1</td>
-                <td>23-10-15</td>
-              </tr>
+              </c:forEach>
             </tbody>
           </table>
         </div>
@@ -75,7 +72,7 @@
           </ul>
         </nav>
         <div class="d-flex justify-content-end my-3 mr-5">
-          <a class="btn btn-info" href="/board/write">글쓰기</a>
+          <a class="btn btn-info" href="${root}/mypage/write">글쓰기</a>
         </div>
       </div>
     </div>

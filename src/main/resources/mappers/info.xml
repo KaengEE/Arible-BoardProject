@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="info">
+
+	<!-- 공지사항 목록 출력 -->
+	<select id="getInfo" resultType="com.project.domain.InfoVO">
+		SELECT
+		i.info_idx,
+		i.info_title,
+		i.info_content,
+		i.info_writer_idx,
+		DATE_FORMAT(i.regDate,'%y-%m-%d') AS regDate,
+		u.name
+		FROM info i
+		JOIN users u ON i.info_writer_idx = u.userno
+	</select>
+
+	<!-- 공지사항 작성 -->
+	<insert id="writerInfo" parameterType="com.project.domain.InfoVO">
+		INSERT INTO
+		info(info_title, info_writer_idx, info_content,info_file)
+		VALUES(#{info_title},#{info_writer_idx},#{info_content},#{info_file, jdbcType=VARCHAR})
+	</insert>
+	
+	
+	<!-- 뷰페이지 -->
+	<select id="getInfoDetail" parameterType="Integer" resultType="com.project.domain.InfoVO">
+		SELECT
+		i.info_idx,
+		i.info_title,
+		i.info_content,
+		i.info_writer_idx,
+		DATE_FORMAT(i.regDate,'%y-%m-%d') AS regDate,
+		i.info_file,
+		u.name
+		FROM info i
+		JOIN users u ON i.info_writer_idx = u.userno
+		WHERE info_idx = #{info_idx}
+	</select>
+	<!-- 공지사항 수정 -->
+	<!-- 공지사항 삭제 -->
+</mapper>
