@@ -43,7 +43,7 @@
 								type="text" value="${boardMenu.board_name }" readonly="readonly" />
 						</div>
 					</div>
-				<form:form action="${root }/board/modify_pro" method="post"
+				<form:form action="${root }/board/modify_pro?board_idx=${board_idx}" method="post"
 					modelAttribute="modifyContent">
 					<form:hidden path="board_idx" />
 					<form:hidden path="content_idx" />
@@ -57,7 +57,7 @@
 					<form:errors path='content' style='color:red' />
 					<div>
 					<a class="btn btn-danger"
-						href="${root }/board/main?board_idx=${board_idx}">취소</a>
+						href="${root }/board/view?board_idx=${board_idx}&page=${page}&content_idx=${content_idx}">취소</a>
 					<form:button class="btn btn-info">작성완료</form:button>
 					</div>
 				</form:form>

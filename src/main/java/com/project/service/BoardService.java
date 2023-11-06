@@ -4,12 +4,15 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.apache.ibatis.session.RowBounds;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import com.project.dao.BoardDAO;
 import com.project.domain.BoardVO;
 import com.project.domain.LoginUser;
+import com.project.domain.PageBean;
 
 @Service
 public class BoardService {
@@ -20,31 +23,52 @@ public class BoardService {
 	@Resource(name="sessionUser")
 	private LoginUser sessionUser;
 	
-	//寃뚯떆�뙋�씠由�
+	@Value("${page.listcnt}")
+	private int page_listcnt;
+	
+	@Value("${page.paginationcnt}")
+	private int page_paginationcnt;
+	
+	//카테고리명
 	public String getBoardName(int board_idx) {
 		return dao.getBoardName(board_idx);
 	}
 	
-	//寃뚯떆湲��옉�꽦
+	//게시글 작성
 	public void addBoardContent(BoardVO writeContent) {
 		
-		//湲��벖�씠瑜� �꽭�뀡濡쒓렇�씤�뿉�꽌 媛��졇���꽌 異붽�
+		//세션에있는 유저no 가져오기
 		writeContent.setWriter_idx(sessionUser.getUserno());
 		
 		dao.addBoardContent(writeContent);
 	}
 	
-	//寃뚯떆湲� 紐⑸줉
-	public List<BoardVO> getContentList(int board_idx){
-		return dao.getContentList(board_idx);
+	//게시글 목록
+	public List<BoardVO> getContentList(int board_idx, int page){
+		//시작 인덱스 = (페이지번호 - 1) * 10
+		int start = (page-1) * page_listcnt;
+		//RowBounds(글시작번호, 가져올 개수)
+		RowBounds rowBounds = new RowBounds(start,page_listcnt);
+		return dao.getContentList(board_idx, rowBounds);
 	}
 	
-	//酉고럹�씠吏�
+	//게시글 검색
+	public List<BoardVO> searchContent(String keyword, int board_idx, int page){
+		//시작 인덱스 = (페이지번호 - 1) * 10
+		int start = (page-1) * page_listcnt;
+		//RowBounds(글시작번호, 가져올 개수)
+		RowBounds rowBounds = new RowBounds(start,page_listcnt);
+		
+		return dao.searchContent(keyword,board_idx,rowBounds);
+	}
+	
+	
+	//게시판 뷰
 	public BoardVO viewCotent(int content_idx) {
 		return dao.viewCotent(content_idx);
 	}
 	
-	//寃뚯떆湲� 議고쉶�떆 議고쉶�닔 1利앷�
+	//조회수
 	public BoardVO view(int content_idx) {
 		dao.viewCnt(content_idx);
 		return dao.viewCotent(content_idx);
@@ -59,5 +83,45 @@ public class BoardService {
 	public void deleteContent(int content_idx) {
 		dao.deleteContent(content_idx);
 	}
+	
+	//페이지네이션 계산
+	public PageBean getContentCnt(int board_idx, int currentPage) {
+		
+		//게시판별 게시글 개수
+		int content_cnt = dao.getContentCnt(board_idx);
+		
+		PageBean pageBean = new PageBean(content_cnt, currentPage, 
+										 page_listcnt, page_paginationcnt);
+
+		return pageBean;
+	}
+	
+	//인기글10
+	public List<BoardVO> getPopularList(BoardVO pList){
+		return dao.getPopularList(pList);
+	}
+	
+	//전체인기글
+	public List<BoardVO> getPopular(BoardVO pList, int page){
+		
+		//시작 인덱스 = (페이지번호 - 1) * 10
+		int start = (page-1) * page_listcnt;
+		//RowBounds(글시작번호, 가져올 개수)
+		RowBounds rowBounds = new RowBounds(start,page_listcnt);
+
+		return dao.getPopular(pList, rowBounds);
+	}
+	
+	//페이지네이션 계산(전체글)
+	public PageBean getPopularCnt(int currentPage) {
+		int content_cnt = dao.getPopularContentCnt();
+		
+		PageBean pageBean = new PageBean(content_cnt, currentPage, 
+				 page_listcnt, page_paginationcnt);
+
+		return pageBean;
+
+	}
+		
 	
 }

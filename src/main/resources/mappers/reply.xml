@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="reply">
+
+	<!-- 댓글 작성 -->
+	<insert id="newReply" parameterType="com.project.domain.ReplyVO">
+		INSERT INTO
+		reply (reply, reply_writer_idx,content_idx)
+		VALUES (#{reply}, #{reply_writer_idx},#{content_idx})
+	</insert>
+	
+	<!-- 댓글 목록 -->
+	<select id="getReply"  resultType="com.project.domain.ReplyVO">
+		SELECT
+		reply_idx,
+		reply,
+		name,
+		DATE_FORMAT(reply_regDate,'%y-%m-%d') AS reply_regDate,
+		reply_writer_idx
+		FROM reply r
+		JOIN users u ON r.reply_writer_idx = u.userno
+		JOIN board b ON r.content_idx = b.content_idx
+		WHERE r.content_idx = ${content_idx}
+	</select>
+
+
+	<!-- 댓글 삭제 -->
+	<delete id="removeReply">
+		DELETE FROM reply
+		WHERE reply_idx = #{reply_idx}
+	</delete>
+	
+	
+	
+</mapper>

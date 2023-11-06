@@ -43,46 +43,36 @@
             <!-- 댓글리스트 -->
             <b>댓글</b>
             <ul class="list-group list-group-flush">
+            <c:forEach var="obj" items="${replyList}">
               <li class="list-group-item">
-                좋은글 감사합니다!
+                ${obj.reply}
                 <div class="d-flex justify-content-end">
-                  <span>작성자: 펭수</span>
-                  <span>(2023-10-28)</span>
+                  <span>작성자: ${obj.name}</span>
+                  <span>(${obj.reply_regDate})</span>
                   <div class="ml-3">
                   <!-- 댓글도 댓글쓴사람과 세션아이디 일치하는지에 따라 노출 -->
+                  <c:if test="${obj.reply_writer_idx == sessionUser.userno }">
                     <a class="btn btn-info btn-sm" href="#">수정</a>
-                    <a class="btn btn-danger btn-sm" href="#">삭제</a>
+                    <a class="btn btn-danger btn-sm" href="${root }/board/delReply?board_idx=${board_idx }&content_idx=${content_idx }&reply_idx=${obj.reply_idx}">삭제</a>
+                  </c:if>
+                  </div>
+                </div>
+              </li>
+  			</c:forEach>
+  			</ul>
 
-                  </div>
-                </div>
-              </li>
-  
-              <li class="list-group-item">
-                좋은글 감사합니다!
-                <div class="d-flex justify-content-end">
-                  <span>작성자: 펭수</span>
-                  <span>(2023-10-28)</span>
-                  <div class="ml-3">
-                    <button class="btn btn-info btn-sm">수정</button>
-                    <button class="btn btn-danger btn-sm">삭제</button>
-                  </div>
-                </div>
-              </li>
-            </ul>
-            
             
             <!-- 댓글작성 post 로 전송 -->
-            <form action="reply/write" method="post">
+            <form action="/board/addReply" method="post">
+			<input type="hidden" name="board_idx" value="${board_idx}" />
+			<input type="hidden" name="content_idx" value="${content_idx}" />
               <div class="form-group">
                 <div class="row d-flex justify-content-center">
                   <div class="input-group">
                     <div class="input-group-prepend">
                       <span class="input-group-text">댓글작성</span>
                     </div>
-                    <textarea
-                      class="form-control"
-                      aria-label="With textarea"
-                    ></textarea>
+					<textarea name="reply" class="form-control" aria-label="With textarea" required></textarea>
                     <button type="submit" class="btn btn-primary btn-sm">
                       작성
                     </button>
@@ -90,10 +80,12 @@
                 </div>
               </div>
             </form>
+            
+            
             <div class="d-flex justify-content-center">
               <a
                 class="btn btn-primary mr-1 btn-m"
-                href="${root }/board/main?board_idx=${board_idx}"
+                href="${root }/board/main?board_idx=${board_idx}&page=${page}"
                 >목록으로</a
               >
             </div>

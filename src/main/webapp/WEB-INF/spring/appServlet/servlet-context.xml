@@ -27,13 +27,15 @@
 	<context:component-scan base-package="com.project.domain" />
 	
 	
-		<!-- 인터셉터 객체 등록 -->
+	<!-- 인터셉터 객체 등록 -->
 	<beans:bean id="menuInterceptor" class="com.project.interceptor.MenuInterceptor">
 		<beans:constructor-arg>
 			<beans:bean class="com.project.service.MenuService" />
 		</beans:constructor-arg>
 	</beans:bean>
 	<beans:bean id="checkLoginInterceptor" class="com.project.interceptor.CheckLoginInterceptor"/>
+	<beans:bean id="infoAdminInterceptor" class="com.project.interceptor.InfoAdminInterceptor" />
+	
 	<!-- 인터셉터 설정 -->
 	<interceptors>
 		<interceptor>
@@ -51,7 +53,23 @@
 			<exclude-mapping path="/board/main"/>
 			<beans:ref bean="checkLoginInterceptor"/>
 		</interceptor>
+		 <interceptor>
+			<mapping path="/mypage/write"/>
+			<beans:ref bean="infoAdminInterceptor"/>
+		</interceptor>
 	</interceptors>
 	
+	
+	<!-- 파일 업로드 -->
+	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+	  <beans:property name="defaultEncoding" value="utf-8"></beans:property>
+	  <!-- 1024 * 1024 * 10 bytes 10MB -->
+	  <beans:property name="maxUploadSize" value="104857560"></beans:property>
+	  <!-- 1024 * 1024 * 2 bytes 2MB -->
+	  <beans:property name="maxUploadSizePerFile" value="2097152"></beans:property>
+	  <beans:property name="uploadTempDir" value="file:/C:/upload/tmp"></beans:property>
+	  <beans:property name="maxInMemorySize" value="10485756"></beans:property>
+	</beans:bean>
+
 	
 </beans:beans>

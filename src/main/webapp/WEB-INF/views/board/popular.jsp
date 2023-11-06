@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <c:set var="root" value="${pageContext.request.contextPath }" />
 
 <!DOCTYPE html>
@@ -18,8 +17,8 @@
 	<!-- 점보트론 -->
 	<div class="jumbotron jumbotron-fluid">
 		<div class="container">
-			<h4 class="display-4">${boardMenu.board_name }</h4>
-			<p class="lead">${boardMenu.board_title }</p>
+			<h4 class="display-4">인기글</h4>
+			<p class="lead">전체글에서 지금 <span>HOT</span>한 글</p>
 		</div>
 	</div>
 
@@ -27,7 +26,7 @@
 	<div class="d-flex justify-content-center">
 		<div class="card" style="width: 50rem">
 			<div class="card-body">
-				<h5 class="card-title">${boardMenu.board_name }</h5>
+				<h5 class="card-title">인기글</h5>
 
 				<!-- 게시글 table (인기순) -->
 				<table class="table table-striped">
@@ -73,12 +72,12 @@
 						<c:choose>
 							<c:when test="${idx == pageBean.currentPage}">
 								<li class="page-item active"><a
-									href="${root }/board/main?board_idx=${board_idx}&page=${idx}"
+									href="${root }/board/popular?page=${idx}"
 									class="page-link">${idx }</a></li>
 							</c:when>
 							<c:otherwise>
 								<li class="page-item"><a
-									href="${root }/board/main?board_idx=${board_idx}&page=${idx}"
+									href="${root }/board/popular?&page=${idx}"
 									class="page-link">${idx }</a></li>
 							</c:otherwise>
 						</c:choose>
@@ -90,24 +89,20 @@
 						</c:when>
 						<c:otherwise>
 							<li class="page-item"><a
-								href="${root }/board/main?board_idx=${board_idx}&page=${pageBean.nextPage}"
+								href="${root }/board/popular?page=${pageBean.nextPage}"
 								class="page-link">다음</a></li>
 						</c:otherwise>
 					</c:choose>
 				</ul>
 			</nav>
-			<div class="d-flex justify-content-end my-3 mr-5">
-				<a class="btn btn-info"
-					href="${root }/board/write?board_idx=${board_idx}">글쓰기</a>
-			</div>
 		</div>
 	</div>
 
 	<!-- 검색 -->
 	<div class="d-flex justify-content-center my-3">
-		<form class="form-inline my-2 my-lg-0" action="${root }/board/search" method="get" >
-		<input type="hidden" value="${board_idx }" name="board_idx"/>
-			<input class="form-control mr-sm-2" name="keyword" placeholder="검색어를 입력하시오"/>
+		<form class="form-inline my-2 my-lg-0">
+			<input class="form-control mr-sm-2" type="search"
+				placeholder="Search" aria-label="Search" />
 			<button class="btn btn-outline-success my-2 my-sm-0" type="submit">
 				Search</button>
 		</form>

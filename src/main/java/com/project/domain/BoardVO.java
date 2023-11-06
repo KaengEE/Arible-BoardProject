@@ -16,7 +16,24 @@ public class BoardVO {
 	private String regDate;
 	private int count;
 	private int board_idx;
+	private int reply_writer_idx; //댓글작성자
 	
+	@NotBlank(message="검색어를 입력해주세요")
+	private String keyword; //검색키워드
+	
+	
+	public String getKeyword() {
+		return keyword;
+	}
+	public void setKeyword(String keyword) {
+		this.keyword = keyword;
+	}
+	public int getReply_writer_idx() {
+		return reply_writer_idx;
+	}
+	public void setReply_writer_idx(int reply_writer_idx) {
+		this.reply_writer_idx = reply_writer_idx;
+	}
 	public String getName() {
 		return name;
 	}
