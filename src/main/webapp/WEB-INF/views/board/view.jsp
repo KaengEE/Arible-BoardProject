@@ -15,8 +15,7 @@
 <!-- nav바 -->
 <c:import url="/WEB-INF/views/include/nav.jsp" />
 
-<!-- footer -->
-<c:import url="/WEB-INF/views/include/footer.jsp" />
+
     <div class="container mt-5 mb-5">
       <div class="d-flex justify-content-center">
         <div class="card" style="width: 800px">
@@ -93,7 +92,8 @@
         </div>
       </div>
     </div>
-
+<!-- footer -->
+<c:import url="/WEB-INF/views/include/footer.jsp" />
 
 </body>
 </html>

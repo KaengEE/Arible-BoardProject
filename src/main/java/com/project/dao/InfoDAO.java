@@ -28,4 +28,19 @@ public class InfoDAO {
 	public InfoVO getInfo(int info_idx) {
 		return sqlTemplate.selectOne("info.getInfoDetail", info_idx);
 	}
+	
+	//공지사항 수정
+	public void modifyInfo(InfoVO modifyInfo) {
+		sqlTemplate.update("info.updateInfo", modifyInfo);
+	}
+	
+	//공지사항 삭제
+	public void removeInfo(int info_idx) {
+		sqlTemplate.delete("info.delInfo", info_idx);
+	}
+	
+	//공지사항 최신목록
+	public List<InfoVO> getInfoNewList(InfoVO newInfo){
+	return sqlTemplate.selectList("info.getNewInfo",newInfo);
+	}
 }

@@ -14,7 +14,9 @@ public class PageBean {
 	private int pageCnt;
 	// 현재 페이지 번호
 	private int currentPage;
-	
+		
+
+
 	// contentCnt : 전체글 개수, currentPage : 현재 글 번호, 
 	// contentPageCnt : 페이지당 글의 개수, paginationCnt : 페이지 버튼의 개수
 	public PageBean(int contentCnt, int currentPage, int contentPageCnt, int paginationCnt) {
@@ -39,7 +41,7 @@ public class PageBean {
 		if(nextPage > pageCnt) {
 			nextPage = pageCnt;
 		}	
-
+		
 	}
 	
 	public int getMin() {

@@ -70,5 +70,39 @@ public class InfoService {
 	public InfoVO getInfo(int info_idx) {
 		return dao.getInfo(info_idx);
 	}
+	
+	//공지사항 수정페이지
+	public void getInfoContent(InfoVO infoContent) {
+		InfoVO temp = dao.getInfo(infoContent.getInfo_idx());
+		//수정할 정보 가져와서 객체에 입력
+		infoContent.setInfo_title(temp.getInfo_title());
+		infoContent.setInfo_content(temp.getInfo_content());
+		infoContent.setName(temp.getName());
+		infoContent.setInfo_file(temp.getInfo_file());
+		infoContent.setRegDate(temp.getRegDate());
+	}
+	
+	//공지사항 수정
+	public void modifyInfo(InfoVO modifyInfo) {
+		//업로드 파일 있는지 확인
+		MultipartFile upload_file = modifyInfo.getUpload_file();
+		//파일이 있으면 파일 이름 넣어줌
+		if(upload_file.getSize()>0) {
+			String file_name = saveUploadFile(upload_file); //파일 저장
+			modifyInfo.setInfo_file(file_name); //이름만 넣어줌
+		}
+		
+		dao.modifyInfo(modifyInfo);
+	}
+	
+	//공지사항 삭제
+	public void removeInfo(int info_idx) {
+		dao.removeInfo(info_idx);
+	}
+	
+	//공지사항 최신목록
+	public List<InfoVO> getInfoNewList(InfoVO newInfo){
+		return dao.getInfoNewList(newInfo);
+	}
 
 }

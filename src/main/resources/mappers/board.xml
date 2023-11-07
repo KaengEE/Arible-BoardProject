@@ -128,4 +128,11 @@
 	    ORDER BY regDate DESC
 	</select>
 	
+	<!-- 검색된 게시글수 -->
+	<select id="searchCnt" parameterType="hashMap" resultType="Integer">
+		SELECT COUNT(content_idx)
+		FROM board
+		WHERE title LIKE concat('%', #{keyword}, '%') AND board_idx = #{board_idx}
+	</select>
+	
 </mapper>
