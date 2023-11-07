@@ -38,11 +38,12 @@ public class BoardController {
 	
 	@GetMapping("/main")
 	public String board(@RequestParam("board_idx") int board_idx, Model model,
-			@RequestParam(value = "page", defaultValue = "1") int page) {
+			@RequestParam(value = "page", defaultValue = "1") int page,
+			@RequestParam(value ="keyword", defaultValue = "") String keyword ) {
 		model.addAttribute("board_idx",board_idx); //카테고리번호
 		model.addAttribute("boardMenu", mService.getMenu(board_idx)); //카테고리이름
 		model.addAttribute("list", bService.getContentList(board_idx, page)); //리스트 & 페이징
-		
+		model.addAttribute("keyword", keyword);
 		PageBean pageBean = bService.getContentCnt(board_idx, page); //페이지네이션
 		model.addAttribute("pageBean",pageBean);
 		model.addAttribute("page", page); //페이지값 넘겨주기
@@ -59,12 +60,13 @@ public class BoardController {
 			@RequestParam(value = "page", defaultValue = "1") int page) {
 		model.addAttribute("board_idx",board_idx); //카테고리번호
 		model.addAttribute("boardMenu", mService.getMenu(board_idx)); //카테고리이름
-
 		model.addAttribute("list",bService.searchContent(keyword, board_idx,page));
+		model.addAttribute("keyword", keyword);
 		
-		//총개수들어감 -> 검색된 글의 총개수로 변경해야함
-		PageBean pageBean = bService.getContentCnt(board_idx, page); //페이지네이션
+		//검색된 글의 총개수
+		PageBean pageBean = bService.getSearchCnt(board_idx, keyword, page); //페이지네이션
 		model.addAttribute("pageBean",pageBean);
+		
 		return "board/main";
 	}
 	
@@ -72,6 +74,7 @@ public class BoardController {
 	@GetMapping("/write")
 	public String write(@RequestParam("board_idx") int board_idx,
 			            @ModelAttribute("writeContent") BoardVO content, Model model) {
+		content.setBoard_idx(board_idx);
 		model.addAttribute("board_idx",board_idx); //카테고리번호
 		model.addAttribute("boardMenu", mService.getMenu(board_idx)); //카테고리이름
 		return "board/write";
@@ -80,14 +83,17 @@ public class BoardController {
 	//유효성검사하고 데이터 저장하기
 	@PostMapping("/write_pro")
 	public String write_pro(@Valid @ModelAttribute("writeContent") BoardVO writeContent,
-							BindingResult result,Model model,
-							@RequestParam("board_idx") int board_idx) {
+							BindingResult result,Model model) {
+		
+		int board_idx = writeContent.getBoard_idx();
+		model.addAttribute("boardMenu", mService.getMenu(board_idx)); //카테고리이름
+		model.addAttribute("board_idx",board_idx); //카테고리번호
+		
 		if(result.hasErrors()) {
 			return "board/write";
-		}
+		}		
 		//DB저장
 		bService.addBoardContent(writeContent);
-		model.addAttribute("board_idx",board_idx); //카테고리번호
 		return "board/write_success";
 	}
 	
@@ -143,6 +149,8 @@ public class BoardController {
 			@RequestParam("content_idx") int content_idx,
 			@RequestParam(value = "page", defaultValue = "1") int page,
 			@ModelAttribute("modifyContent") BoardVO modifyContent, Model model) {
+		
+		modifyContent.setBoard_idx(board_idx);
 		model.addAttribute("board_idx",board_idx); //카테고리 번호
 		model.addAttribute("content_idx",content_idx); //게시글 번호
 		model.addAttribute("sessionUser", sessionUser); //사용자세션정보
@@ -158,18 +166,23 @@ public class BoardController {
 
 	//수정	
 	@PostMapping("/modify_pro")
-	public String modify_pro(@RequestParam("board_idx") int board_idx,
-			@RequestParam("content_idx") int content_idx,
+	public String modify_pro(@RequestParam("content_idx") int content_idx,
 			@RequestParam(value = "page", defaultValue = "1") int page,
 			@Valid @ModelAttribute("modifyContent") BoardVO modifyContent,
             BindingResult result, Model model) {
-		if(result.hasErrors()) {
-			return "board/modify";
-		}
+		
+//		System.out.println(page);
+//		System.out.println(board_idx);
+//		System.out.println(content_idx);
+		int board_idx = modifyContent.getBoard_idx();
 		model.addAttribute("board_idx",board_idx); //카테고리 번호
 		model.addAttribute("boardMenu", mService.getMenu(modifyContent.getBoard_idx())); //카테고리이름
 		model.addAttribute("content_idx",content_idx); //게시글 번호
 		model.addAttribute("page", page); //페이지값 넘겨주기
+		
+		if(result.hasErrors()) {
+			return "board/modify";
+		}
 
 		//DB에 수정된 데이터 저장하기
 		bService.modifyContent(modifyContent);

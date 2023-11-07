@@ -39,6 +39,33 @@
 		JOIN users u ON i.info_writer_idx = u.userno
 		WHERE info_idx = #{info_idx}
 	</select>
+	
 	<!-- 공지사항 수정 -->
+	<update id="updateInfo" parameterType="com.project.domain.InfoVO">
+		UPDATE info
+		SET info_title = #{info_title},
+			info_content = #{info_content},
+			info_file = #{info_file, jdbcType=VARCHAR}
+		WHERE info_idx = #{info_idx}
+	</update>
+	
 	<!-- 공지사항 삭제 -->
+	<delete id="delInfo" parameterType="Integer">
+		DELETE FROM info
+		WHERE info_idx = #{info_idx}
+	</delete>
+	
+	<!-- 공지사항 최신순 3개 -->
+		<select id="getNewInfo" resultType="com.project.domain.InfoVO">
+		SELECT
+		i.info_idx,
+		i.info_title,
+		i.info_content,
+		i.info_writer_idx,
+		DATE_FORMAT(i.regDate,'%y-%m-%d') AS regDate,
+		u.name
+		FROM info i
+		JOIN users u ON i.info_writer_idx = u.userno
+		ORDER BY regDate DESC LIMIT 3
+	</select>
 </mapper>

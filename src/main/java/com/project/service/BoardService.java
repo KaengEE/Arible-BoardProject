@@ -96,6 +96,16 @@ public class BoardService {
 		return pageBean;
 	}
 	
+	
+	//검색 후 페이지네이션 계산
+	public PageBean getSearchCnt(int board_idx,String keyword, int currentPage) {
+		int content_cnt = dao.getSearchCnt(board_idx, keyword);
+		PageBean pageBean = new PageBean(content_cnt, currentPage, 
+				 page_listcnt, page_paginationcnt);
+		return pageBean;
+	}
+	
+	
 	//인기글10
 	public List<BoardVO> getPopularList(BoardVO pList){
 		return dao.getPopularList(pList);
@@ -122,6 +132,7 @@ public class BoardService {
 		return pageBean;
 
 	}
+
 		
 	
 }

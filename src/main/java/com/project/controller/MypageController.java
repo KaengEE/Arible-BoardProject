@@ -70,4 +70,5 @@ public class MypageController {
 		model.addAttribute("qnaList", qService.qnaList());
 		return "mypage/qna";
 	}
+	
 }

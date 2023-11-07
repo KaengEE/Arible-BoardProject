@@ -59,10 +59,6 @@ public class BoardDAO {
 		sqlTemplate.delete("board.deleteContent",content_idx);
 	}
 	
-	//게시판 별 게시글 총개수
-	public int getContentCnt(int info_idx) {
-		return sqlTemplate.selectOne("board.contentCnt",info_idx);
-	}
 	
 	//인기글10
 	public List<BoardVO> getPopularList(BoardVO pList){
@@ -74,9 +70,21 @@ public class BoardDAO {
 		return sqlTemplate.selectList("board.contentPopular", pList, rowBounds);
 	}
 	
+	//게시판 별 게시글 총개수
+	public int getContentCnt(int info_idx) {
+		return sqlTemplate.selectOne("board.contentCnt",info_idx);
+	}
 	//전체글 수
 	public int getPopularContentCnt() {
 		return sqlTemplate.selectOne("board.allContentCnt");
+	}
+	
+	//검색된 글 수
+	public int getSearchCnt(int board_idx, String keyword) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("board_idx", board_idx);
+		map.put("keyword", keyword);
+		return sqlTemplate.selectOne("board.searchCnt", map);	
 	}
 	
 }

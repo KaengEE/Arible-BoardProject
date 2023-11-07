@@ -39,8 +39,8 @@
 					<div class="input-group">
 						<div class="input-group-prepend">
 							<label class="input-group-text" style="font-size: 1.3rem"
-								for="inputGroupSelect01">카테고리</label> <input
-								type="text" value="${boardMenu.board_name }" readonly="readonly" />
+								for="inputGroupSelect01">카테고리</label>
+								<input type="text" value="${boardMenu.board_name }" readonly="readonly" />
 						</div>
 					</div>
 				<form:form action="${root }/board/modify_pro?board_idx=${board_idx}" method="post"
@@ -58,7 +58,7 @@
 					<div>
 					<a class="btn btn-danger"
 						href="${root }/board/view?board_idx=${board_idx}&page=${page}&content_idx=${content_idx}">취소</a>
-					<form:button class="btn btn-info">작성완료</form:button>
+					<form:button class="btn btn-info">수정완료</form:button>
 					</div>
 				</form:form>
 				</div>

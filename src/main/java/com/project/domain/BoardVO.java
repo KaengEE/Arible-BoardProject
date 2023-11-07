@@ -4,6 +4,12 @@ import javax.validation.constraints.NotBlank;
 
 public class BoardVO {
 
+	@Override
+	public String toString() {
+		return "BoardVO [content_idx=" + content_idx + ", title=" + title + ", content=" + content + ", writer_idx="
+				+ writer_idx + ", name=" + name + ", regDate=" + regDate + ", count=" + count + ", board_idx="
+				+ board_idx + ", reply_writer_idx=" + reply_writer_idx + ", keyword=" + keyword + "]";
+	}
 	private int content_idx;
 	
 	@NotBlank(message="제목을 입력해주세요")
@@ -18,7 +24,6 @@ public class BoardVO {
 	private int board_idx;
 	private int reply_writer_idx; //댓글작성자
 	
-	@NotBlank(message="검색어를 입력해주세요")
 	private String keyword; //검색키워드
 	
 	

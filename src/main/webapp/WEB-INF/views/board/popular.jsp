@@ -17,7 +17,7 @@
 	<!-- 점보트론 -->
 	<div class="jumbotron jumbotron-fluid">
 		<div class="container">
-			<h4 class="display-4">인기글</h4>
+			<h4 class="display-4">전체글</h4>
 			<p class="lead">전체글에서 지금 <span>HOT</span>한 글</p>
 		</div>
 	</div>
@@ -98,15 +98,6 @@
 		</div>
 	</div>
 
-	<!-- 검색 -->
-	<div class="d-flex justify-content-center my-3">
-		<form class="form-inline my-2 my-lg-0">
-			<input class="form-control mr-sm-2" type="search"
-				placeholder="Search" aria-label="Search" />
-			<button class="btn btn-outline-success my-2 my-sm-0" type="submit">
-				Search</button>
-		</form>
-	</div>
 
 
 	<!-- footer -->

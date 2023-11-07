@@ -64,7 +64,7 @@
 						</c:when>
 						<c:otherwise>
 							<li class="page-item"><a
-								href="${root }/board/main?board_idx=${board_idx}&page=${pageBean.prevPage}"
+								href="${root }/board/main?board_idx=${board_idx}&keyword=${keyword}&page=${pageBean.prevPage}"
 								class="page-link">이전</a></li>
 						</c:otherwise>
 					</c:choose>
@@ -73,12 +73,12 @@
 						<c:choose>
 							<c:when test="${idx == pageBean.currentPage}">
 								<li class="page-item active"><a
-									href="${root }/board/main?board_idx=${board_idx}&page=${idx}"
+									href="${root }/board/main?board_idx=${board_idx}&keyword=${keyword}&page=${idx}"
 									class="page-link">${idx }</a></li>
 							</c:when>
 							<c:otherwise>
 								<li class="page-item"><a
-									href="${root }/board/main?board_idx=${board_idx}&page=${idx}"
+									href="${root }/board/main?board_idx=${board_idx}&keyword=${keyword}&page=${idx}"
 									class="page-link">${idx }</a></li>
 							</c:otherwise>
 						</c:choose>
@@ -90,7 +90,7 @@
 						</c:when>
 						<c:otherwise>
 							<li class="page-item"><a
-								href="${root }/board/main?board_idx=${board_idx}&page=${pageBean.nextPage}"
+								href="${root }/board/main?board_idx=${board_idx}&keyword=${keyword}&page=${pageBean.nextPage}"
 								class="page-link">다음</a></li>
 						</c:otherwise>
 					</c:choose>
