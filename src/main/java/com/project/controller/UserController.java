@@ -65,7 +65,8 @@ public class UserController {
 	}
 	
 	@PostMapping("/join_pro")
-	public String join_pro(@Valid @ModelAttribute("joinUser") UserVO joinUser, BindingResult result, Model model) throws Exception {
+	public String join_pro(@Valid @ModelAttribute("joinUser") UserVO joinUser,
+			BindingResult result, Model model) throws Exception {
 		
 		if(result.hasErrors()) {
 			return "users/join";
