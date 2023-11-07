@@ -1,10 +1,14 @@
-# minipj
+# Arible 커뮤니티 사이트
+
 스프링레거시 프로젝트
+
 커뮤니티 사이트
 
 아리블 커뮤니티 프로젝트
 (23년10월29일 ~ 23년11월7일)
-<img src='main/webapp/resources/images/main_image.png'>
+
+<img src='src/main/webapp/resources/images/main_image.png' width="500px">
+
 스프링레거시 MVC 프로젝트로
 메이븐을 이용하여 제작하였습니다.
 
@@ -28,6 +32,6 @@ Mybatis를 활용하여 DB연결을 하였고
 </ul>
 <hr>
 <h2>프로젝트 일정</h2>
-<img src='main/webapp/resources/images/todo_arible.png'>
+<img src='src/main/webapp/resources/images/todo_arible.png' width="400px">
 <hr>
 <h4><a href="https://drive.google.com/file/d/1CVOtdDQUvA9Ulaka5nCGQrNWKKjiJ76z/view?usp=sharing">:open_file_folder: 프레젠테이션 자료</a></h4>_
