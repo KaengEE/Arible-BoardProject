@@ -67,7 +67,7 @@
 							<a href="${root }/users/delete?userno=${userno}"
 								class="btn btn-danger">회원탈퇴</a>
 							<div class="mx-2"></div>
-							<form:button class="btn btn-success">회원정보변경</form:button>
+						<form:button class="btn btn-success">회원정보변경</form:button>
 						</div>
 					</form:form>
 				</div>

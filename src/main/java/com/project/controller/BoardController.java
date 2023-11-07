@@ -170,10 +170,7 @@ public class BoardController {
 			@RequestParam(value = "page", defaultValue = "1") int page,
 			@Valid @ModelAttribute("modifyContent") BoardVO modifyContent,
             BindingResult result, Model model) {
-		
-//		System.out.println(page);
-//		System.out.println(board_idx);
-//		System.out.println(content_idx);
+
 		int board_idx = modifyContent.getBoard_idx();
 		model.addAttribute("board_idx",board_idx); //카테고리 번호
 		model.addAttribute("boardMenu", mService.getMenu(modifyContent.getBoard_idx())); //카테고리이름
@@ -192,7 +189,6 @@ public class BoardController {
 
 	
 	//댓글수정화면
-	//reply_idx를 못받음
 	@GetMapping("/modifyReply")
 	public String modifyReplyView(int reply_idx,
 			@RequestParam("board_idx") int board_idx,

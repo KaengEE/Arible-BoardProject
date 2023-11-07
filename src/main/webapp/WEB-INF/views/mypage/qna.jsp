@@ -38,7 +38,8 @@
 	  <div class="card">
 	    <div class="card-header" id="headingOne">
 	      <h2 class="mb-0">
-	        <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapse${obj.qna_idx }" aria-expanded="true" aria-controls="collapse${obj.qna_idx }">
+	        <button class="btn btn-link btn-block text-left" type="button" 
+	        data-toggle="collapse" data-target="#collapse${obj.qna_idx }" aria-expanded="true" aria-controls="collapse${obj.qna_idx }">
 	          ${obj.question}
 	        </button>
 	      </h2>
