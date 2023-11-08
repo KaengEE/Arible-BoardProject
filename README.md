@@ -38,4 +38,4 @@ Mybatis를 활용하여 DB연결을 하였고
 <h2>프로젝트 일정</h2>
 <img src='src/main/webapp/resources/images/todo_arible.png' width="400px">
 <hr>
-<h4><a href="https://drive.google.com/file/d/1COj4SRwUi9m1e174BLgPRgVSogpwa53N/view?usp=drive_link">:open_file_folder: 프로젝트 자료</a></h4>
+<h4><a href="https://drive.google.com/file/d/1CxcPbF7gp155We21GAbRHTdL9Uhmy_kd/view?usp=drive_link">:open_file_folder: 프로젝트 자료</a></h4>
