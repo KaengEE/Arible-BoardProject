@@ -40,18 +40,20 @@
                 <div class="form-row">
 
                 <div class="form-group col-md-6">
-                  <form:label path="pw" showPassword="false" >비밀번호</form:label>
+                  <form:label path="pw" >비밀번호</form:label>
                   <form:input
                     path="pw"
                     class="form-control"
+                    type="password" 
                   />
                   <form:errors path="pw" style="color: red"/> 
                 </div>
                  <div class="form-group col-md-6">
-                  <form:label path="pw2" showPassword="false" >비밀번호 확인</form:label>
+                  <form:label path="pw2" >비밀번호 확인</form:label>
                   <form:input
                     path="pw2"
                     class="form-control"
+                     type="password"
                   />
                   <form:errors path="pw2" style="color: red"/> 
                 </div>

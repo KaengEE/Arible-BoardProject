@@ -33,7 +33,7 @@
                 <form:errors path="id" style="color:red"/>
               </div>
               <div class="form-group">
-                <form:label path="pw">비밀번호</form:label>
+                <form:label path="pw" type="password">비밀번호</form:label>
                 <form:input path="pw" class="form-control" type="password"/>
                 <form:errors path="pw" style="color:red"/>
               </div>

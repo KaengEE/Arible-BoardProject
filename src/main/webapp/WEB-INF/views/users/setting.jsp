@@ -51,7 +51,7 @@
 						</div>
 						<div class="d-flex justify-content-start mb-2">
 							<form:label path="pw">비밀번호</form:label>
-							<form:input path="pw" />
+							<form:input path="pw" type="password"/>
 							<form:errors path="pw" style="color:red" />
 						</div>
 						<div class="d-flex justify-content-start mb-2">
