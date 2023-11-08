@@ -43,9 +43,9 @@
 						<form:hidden path="userno" />
 						<div class="d-flex justify-content-start mb-2">
 							<form:label path="id">아이디</form:label>
-							<form:input path="id" readonly="readonly" />
+							<form:input path="id" style="pointer-events: none;"/>
 						</div>
-						<div class="d-flex justify-content-start mb-2">
+						<div class="d-flex justify-content-start mb-2" style="pointer-events: none;">
 							<form:label path="name">이름</form:label>
 							<form:input path="name" readonly="readonly" />
 						</div>

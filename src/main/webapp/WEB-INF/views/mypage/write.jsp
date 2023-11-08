@@ -40,6 +40,7 @@
 					</div>
 					<div class="form-group">
 						<div class="text-right">
+							<a class="btn btn-danger" href="${root}/mypage/info">취소</a>
 							<form:button class='btn btn-primary'>작성하기</form:button>
 						</div>
 					</div>					

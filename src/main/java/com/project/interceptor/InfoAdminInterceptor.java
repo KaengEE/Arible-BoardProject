@@ -21,7 +21,7 @@ public class InfoAdminInterceptor implements HandlerInterceptor{
 		
 		if(sessionUser.getUserno() != adminId) {
 			String contextPath = request.getContextPath();
-			response.sendRedirect(contextPath + "/mypage/info");
+			response.sendRedirect(contextPath + "/mypage/not_admin");
 			return false; //요청한 주소를 취소
 		}
 		

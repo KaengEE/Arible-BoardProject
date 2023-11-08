@@ -27,11 +27,11 @@
 							<div class="form-group">
 								<form:hidden path="info_idx" />
 								<form:label path="name">작성자</form:label>
-								<form:input path="name"  disabled="disabled" class="form-control" />
+								<form:input path="name"  style="pointer-events: none;" class="form-control" />
 							</div>
 							<div class="form-group">
 								<form:label path="regDate">작성날짜</form:label>
-								<form:input path="regDate" disabled="disabled" class="form-control"  />
+								<form:input path="regDate" style="pointer-events: none;" class="form-control"  />
 							</div>
 							<div class="form-group">
 								<form:label path="info_title">제목</form:label>

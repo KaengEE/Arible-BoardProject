@@ -30,6 +30,7 @@
 		FROM board b
 		JOIN users u ON b.writer_idx = u.userno
 		WHERE board_idx = #{board_idx}
+		ORDER BY content_idx DESC
 	</select>
 	
 	

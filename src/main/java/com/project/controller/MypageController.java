@@ -71,4 +71,10 @@ public class MypageController {
 		return "mypage/qna";
 	}
 	
+	//권한x
+	@GetMapping("/not_admin")
+	public String not_admin(){
+		return "mypage/not_admin";
+	}
+	
 }

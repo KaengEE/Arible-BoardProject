@@ -44,7 +44,6 @@
 	        </button>
 	      </h2>
 	    </div>
-	
 	    <div id="collapse${obj.qna_idx }" class="collapse" aria-labelledby="heading${obj.qna_idx }" data-parent="#accordionExample">
 	      <div class="card-body">
 	        ${obj.answer }
@@ -52,6 +51,7 @@
 	    </div>
 	  </div>
 	  </c:forEach>
+	  
 	</div>
 </div>
 </body>
